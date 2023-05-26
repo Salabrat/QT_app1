@@ -59,6 +59,34 @@ void MainWindow::on_equalsButton_clicked()
     ui->lineEdit->setText(QString::number(result));
 }
 
+void MainWindow::on_addButton_clicked()
+{
+    currentResult = ui->lineEdit->text().toDouble();
+    currentOperator = "+";
+    isOperatorClicked = true;
+}
+
+void MainWindow::on_subtractButton_clicked()
+{
+    currentResult = ui->lineEdit->text().toDouble();
+    currentOperator = "-";
+    isOperatorClicked = true;
+}
+
+void MainWindow::on_multiplyButton_clicked()
+{
+    currentResult = ui->lineEdit->text().toDouble();
+    currentOperator = "*";
+    isOperatorClicked = true;
+}
+
+void MainWindow::on_divideButton_clicked()
+{
+    currentResult = ui->lineEdit->text().toDouble();
+    currentOperator = "/";
+    isOperatorClicked = true;
+}
+
 void MainWindow::connectSignalsAndSlots()
 {
     connect(ui->button0, &QPushButton::clicked, this, &MainWindow::on_digitButton_clicked);
@@ -72,11 +100,10 @@ void MainWindow::connectSignalsAndSlots()
     connect(ui->button8, &QPushButton::clicked, this, &MainWindow::on_digitButton_clicked);
     connect(ui->button9, &QPushButton::clicked, this, &MainWindow::on_digitButton_clicked);
 
-    connect(ui->addButton, &QPushButton::clicked, this, &MainWindow::on_operatorButton_clicked);
-    connect(ui->subtractButton, &QPushButton::clicked, this, &MainWindow::on_operatorButton_clicked);
-    connect(ui->multiplyButton, &QPushButton::clicked, this, &MainWindow::on_operatorButton_clicked);
-    connect(ui->divideButton, &QPushButton::clicked, this, &MainWindow::on_operatorButton_clicked);
+    connect(ui->addButton, &QPushButton::clicked, this, &MainWindow::on_addButton_clicked);
+    connect(ui->subtractButton, &QPushButton::clicked, this, &MainWindow::on_subtractButton_clicked);
+    connect(ui->multiplyButton, &QPushButton::clicked, this, &MainWindow::on_multiplyButton_clicked);
+    connect(ui->divideButton, &QPushButton::clicked, this, &MainWindow::on_divideButton_clicked);
 
     connect(ui->equalsButton, &QPushButton::clicked, this, &MainWindow::on_equalsButton_clicked);
 }
-
