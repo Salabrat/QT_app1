@@ -23,6 +23,8 @@ private slots:
     void on_subtractButton_clicked();
     void on_multiplyButton_clicked();
     void on_divideButton_clicked();
+    void on_clearButton_clicked(); // Добавленный слот
+
 
 private:
     void connectSignalsAndSlots();

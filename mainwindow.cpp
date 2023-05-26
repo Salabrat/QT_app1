@@ -37,20 +37,19 @@ void MainWindow::on_operatorButton_clicked()
     currentOperator = buttonText;
     isOperatorClicked = true;
 }
-
 void MainWindow::on_equalsButton_clicked()
 {
     double secondOperand = ui->lineEdit->text().toDouble();
-    double result = 0.0;
+    double result = currentResult; // Используем текущий результат как исходное значение
     if (currentOperator == "+") {
-        result = currentResult + secondOperand;
+        result += secondOperand;
     } else if (currentOperator == "-") {
-        result = currentResult - secondOperand;
+        result -= secondOperand;
     } else if (currentOperator == "*") {
-        result = currentResult * secondOperand;
+        result *= secondOperand;
     } else if (currentOperator == "/") {
         if (secondOperand != 0.0) {
-            result = currentResult / secondOperand;
+            result /= secondOperand;
         } else {
             ui->lineEdit->setText("Error: Division by zero");
             return;
@@ -87,7 +86,15 @@ void MainWindow::on_divideButton_clicked()
     isOperatorClicked = true;
 }
 
-void MainWindow::connectSignalsAndSlots()
+void MainWindow::on_clearButton_clicked()
+{
+    ui->lineEdit->setText("0");
+    currentResult = 0.0;
+    currentOperator = "";
+    isOperatorClicked = false;
+}
+
+void MainWindow::connectSignalsAndSlots() //соединения сигналов и слотов для кнопок сложения, вычитания, умножения и деления.
 {
     connect(ui->button0, &QPushButton::clicked, this, &MainWindow::on_digitButton_clicked);
     connect(ui->button1, &QPushButton::clicked, this, &MainWindow::on_digitButton_clicked);
@@ -106,4 +113,5 @@ void MainWindow::connectSignalsAndSlots()
     connect(ui->divideButton, &QPushButton::clicked, this, &MainWindow::on_divideButton_clicked);
 
     connect(ui->equalsButton, &QPushButton::clicked, this, &MainWindow::on_equalsButton_clicked);
+    connect(ui->clearButton, &QPushButton::clicked, this, &MainWindow::on_clearButton_clicked);
 }
